@@ -6,6 +6,7 @@ User.destroy_all
 
 require "faker"
 
+
 # def seed_names
 # 3.times do
 # name = Faker::Name.unique.first_name
@@ -14,6 +15,30 @@ require "faker"
 # username = name[0] + last
 # username.downcase!
 # User.create(username: username, name: full_name)
+
+def seed_names
+  3.times do
+    name = Faker::Name.unique.first_name
+    last = Faker::Name.unique.last_name
+    full_name = name + " " + last
+    username = name[0] + last
+    username.downcase!
+    # binding.pry
+    User.create(username: username, name: full_name)
+  end
+end
+
+seed_names()
+
+# favorites_list = “Green Peace”, “A Very Cheery Smoothie”, “Oh Happy Day” 
+# def seed_mood_recipes
+# mood_ids = Mood.all.collect { |mood| mood.id }
+# recipe_ids = Recipe.all.collect { |recipe| recipe.i
+
+# mood_ids.each_with_index do |m_id, i|
+# MoodRecipe.create(mood_id: m_id)
+# MoodRecipe.create(recipe_id: recipe_ids[i])
+# binding.pry
 # end
 # end
 #
@@ -44,6 +69,7 @@ calm_chill_recipe= [ [ “HIGH TIMES”, “ 1 cup nut or seed or oat milk,Handf
 peaceful_recipe = [ [ “Green Peace”, “Spinach, pineapple, coconut water, avocado, spirulina, mint leaves, hemp seeds, honey, lemon”, “Spirulina is a very concentrated source of vitamins and minerals and also very detoxifying and alkalizing to the body, which is why it’s considered a “super food” in many circles. It’s a great way to get a green smoothie without adding handfuls of kale. ”,  “CALORIES : 230”], 
  [“Peach-Ginger Blend”, “2 cups frozen sliced peaches, 1 1/2 cups buttermilk, 3 tablespoons brown sugar and 1 tablespoon grated fresh ginger”, “No worries, No cares.Things are peachy. ”, “CALORIES : 360”] ]
 
+
 restless_recipe = [ [“Bedtime Zzz”, “1 kiwi, peeled and frozen, 1 banana, peeled and frozen, 100 ml chamomile tea, cold, 1/2 cup almond milk, 1 tbsp maple syrup (optional), 1 tbsp almond butter (optional)”, “ Kiwi, who would have thought kiwi can help you fall asleep better? I wouldn’t! But kiwi may be the most melatonin-increasing fruit ever. This little green fruit is high in serotonin, a hormone that helps you sleep and maintain it during the night. This hormone also appears to interact with melatonin, and some studies have shown that higher levels of serotonin increase melatonin levels. Suffering from Insomnia? This is your key to some Zzz’s” “CALORIES: 243”],
  [“Melatonin Boost”, “3/4 c unsweetened almond coconut milk, 1/2 c frozen pineapple chunks, 1/4 banana, frozen, 5 small mint leaves, 2 drops liquid stevia”, “Turns out there are definitely some things you can do to ensure better sleep, and enjoying this delicious smoothie is one of them!”, “CALORIES : 210”] ]
 
@@ -69,20 +95,82 @@ bitter_mood = [ [“Strawberry Shortcake Blend”, “2 cups strawberries, 1 cup
 
  seed_recipe()
 
+def seed_moods
+  moods = ["Unmotivated", "Romantic", "Calm / Chill"]
+  moods.each { |mood| Mood.create(mood: mood) }
+end
+
+seed_moods()
+
+def seed_recipe
+  recipe = [["Daily Warrior", "1 Banana 1 cup Blueberries (Wild), 2 Apples, 1/4
+cup Dates, 2 tbsp Peanut Butter, 2 tbsp [Almonds, Stevia Plant-Based
+Sweetener, Handful Spinach - Organic", "Feeling like you need motivation?
+Make yourself a Daily Warrior with fruits like blueberries which are known to
+improve mental health, and apples containing antioxidants, vitamin C, fiber,
+and several other nutrients that may boost heart, brain, and digestive health
+designed to help you push on through.You got this. You're a warrior!", 680],
+            ["Daily Happy", "1 Banana 1 cup Blueberries (Wild), 2 Apples, 1/4
+cup Dates, 2 tbsp Peanut Butter, 2 tbsp Almonds, Stevia Plant-Based
+Sweetener, Handful Spinach - Organic", "Feeling like you need
+motivation? Make yourself a Daily Warrior with fruits like
+blueberries which are known to improve mental health, and apples
+containing antioxidants, vitamin C, fiber, and several other
+nutrients that may boost heart, brain, and digestive health
+designed to help you push on through.You got this. You're a
+warrior!", 900], ["Daily Meal", "1 Banana 1 cup Blueberries (Wild),
+2 Apples, 1/4 cup Dates, 2 tbsp
+    Peanut Butter, 2 tbsp Almonds, Stevia Plant-Based Sweetener, Handful
+Spinach -
+    Organic", "Feeling like you need motivation? Make yourself a Daily Warrior
+with
+    fruits like blueberries which are known to improve mental health, and
+apples
+    containing antioxidants, vitamin C, fiber, and several other nutrients that
+may
+    boost heart, brain, and digestive health designed to help you push on
+through.You
+    got this. You're a warrior!", 1200]]
+  recipe.each do |recipe|
+    Recipe.create(name_of_recipe: recipe[0], ingredients: recipe[1],
+                  description: recipe[2], calories: recipe[3])
+    # binding.pry
+  end
+end
+
+seed_recipe()
+
+
 def seed_mood_recipes
   mood_ids = Mood.all.collect { |mood| mood.id }
   recipe_ids = Recipe.all.collect { |recipe| recipe.id }
 
-  mood_ids.each_with_index do |m_id, i|
-    MoodRecipe.create(mood_id: m_id)
-    MoodRecipe.create(recipe_id: recipe_ids[i])
-    binding.pry
+  5.times do
+    MoodRecipe.create(mood_id: mood_ids[rand(0..(mood_ids.count -1))],
+                      recipe_id: recipe_ids[rand(0..(recipe_ids.count -1))])
   end
+
+  # mood_ids.each_with_index do |m_id, i|
+  # MoodRecipe.create(mood_id: m_id, recipe_id: recipe_ids[i])
+  # MoodRecipe.create(recipe_id: recipe_ids[i])
+  # binding.pry
+  # end
 end
 
-seed_mood_recipes()
+
+
+
+#
+# # iterate through each recipe, every time you iterate, you can set the mood as the same(as the recipes),
+# seed_mood_recipes()
+# end
+
+# moods = ["Unmotivated", "Romantic", "Calm / Chill"]
 
 favorites_list = “Green Peace”, “A Very Cheery Smoothie”, 
+
+
+seed_mood_recipes()
 
 
 puts "done seeing"  
