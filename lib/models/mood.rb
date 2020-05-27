@@ -1,7 +1,8 @@
 class Mood < ActiveRecord::Base
-  belongs_to :user
-  belongs_to :recipe
+  has_many :mood_recipes
+  has_many :recipes, through: :mood_recipes
 end
 
-# if something belongs to another class
-# I have to have a references to that other thing.
+# A Mood has many Mood Recipes
+# One mood has many recipes, which are associated to that
+# mood through the mood recipes
