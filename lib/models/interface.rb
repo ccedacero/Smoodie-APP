@@ -1,16 +1,29 @@
+
+
+
 class Interface
-  attr_accessor :prompt, :user
+  attr_accessor :prompt, :user 
+
+
+                                     
+
 
   def initialize
     @prompt = TTY::Prompt.new
   end
 
   def welcome
+    puts art
     puts "Welcome to Smoodie!"
     sleep 2
     puts "........."
     sleep 1
     puts "Before giving you our secret smoothie recipes, we need you to login."
+    
+  end
+  
+  def exit
+    puts exit_art
   end
 
   def chooose_login_or_register
