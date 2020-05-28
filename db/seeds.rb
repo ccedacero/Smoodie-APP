@@ -58,16 +58,22 @@ recipe_hash = {
 
 recipe_hash.each do |k, v|
   if k == :happy
-    v.each do |val|
+    v.each_with_index do |val, i|
       binding.pry
-      mood = Mood.create(mood: k.to_s)
-      recipe = Recipe.create(name_of_recipe: v[0][0], ingredients: v[0][1], description: v[0][2], calories: v[0][3])
-      MoodRecipe.create(mood_id: mood.id, recipe_id: recipe.id)
-      binding.pry
-      Favorite.create(recipe_id: recipe.id)
+      if i == 0
+        mood = Mood.create(mood: k.to_s)
+        recipe = Recipe.create(name_of_recipe: val[0], ingredients: val[1], description: val[2], calories: val[3])
+        MoodRecipe.create(mood_id: mood.id, recipe_id: recipe.id)
+      end
+      if i == 1
+        mood = Mood.create(mood: k.to_s)
+        recipe = Recipe.create(name_of_recipe: v[1][0], ingredients: v[1][1], description: v[1][2], calories: v[1][3])
+        MoodRecipe.create(mood_id: mood.id, recipe_id: recipe.id)
+      end
     end
   end
 end
+
 # :romantic =>
 # [ ["Mint To Be", "mint leaves, mango, apple, strawberry, lime juice, passionfruit", "Keep things fresh! You and good health are mint to be.Passionfruit because what is romance without passion?", "calories based on serving amount"],
 # ["Sweetheart", "strawberries, honey, choice of milk, vanilla extract, chocolate chunks", "A nice portion of The Sweetheart will have you ready to snuggle after. Enjoy with a loved one!","calories based on serving amount"]]
