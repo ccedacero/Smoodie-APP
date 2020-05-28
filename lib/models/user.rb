@@ -66,6 +66,34 @@ class User < ActiveRecord::Base
     user
   end
 
-  def user_favorites
+  def self.display_smoothie_info(recipe)
+    puts "Smoothie Name" + "\n"
+    puts recipe.name_of_recipe
+    puts "-----------------------------"
+    puts "Ingredients" + "\n"
+    puts recipe.ingredients
+    puts "-----------------------------"
+    puts "Description" + "\n"
+    puts recipe.description
+    puts "-----------------------------"
+    puts "Calories" + "\n"
+    puts recipe.calories
+    puts "-----------------------------"
+  end
+
+  def self.display_favorites(user)
+    prompt = TTY::Prompt.new
+    user_favs = self.all.find_by(username: user.username).recipes
+    puts "Here are your previously favorited smoothies!"
+    favorite_smoothie = prompt.select("Choose an option to see recipe?", [user_favs[0].name_of_recipe, user_favs[1].name_of_recipe, user_favs[2].name_of_recipe])
+    if favorite_smoothie == user_favs[0].name_of_recipe
+      display_smoothie_info(user_favs[0])
+    elsif favorite_smoothie == user_favs[1].name_of_recipe
+      display_smoothie_info(user_favs[1])
+    elsif favorite_smoothie == user_favs[2].name_of_recipe
+      display_smoothie_info(user_favs[2])
+    end
   end
 end
+
+# user 16 tbrakus

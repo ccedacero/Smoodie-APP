@@ -48,14 +48,14 @@
 # end
 
 #  def seed_recipes
-
-# recipes  = {
+#
+# recipes = {
 # happy =>
 # [ "A Very Cheery Smoothie" ,"1 cup frozen of fresh pineapple, chopped, ¾ cup filtered room temperature water, 5 oz plain Greek, Icelandic, of coconut yogurt, ½ tsp ground turmeric, ½ tsp ground cinnamon,optional goji berries, toasted unsweetened coconut flakes, raw hemp seeds”, "cheer up "Cheer up and get moving with this hearty and happy smoothie!", "CALORIES : 300"]
-
+# }
 # romantic_recipe =>  [[“Mint To Be”, “¼ cup min leaves ,1 cup chopped mango, 1 apple, 1 cup strawberry,  lime juice from 3 limes , 1 cup passionfruit”, “Keeping Things Fresh. Give physical affection to your loved one. If you are more touchy-feely with your loved one, you are more likely to feel romantic -- and in the mood.Mint can help you relax and ease those butterflies.Passionfruit because what is romance without passion?”, “CALORIES : 525” ] , [ “Sweetheart”, “  strawberries - 1 cup, honey - 2 tbsp,  milk - 1 ½ cup
 #  vanilla extract - ½ tsp, chocolate chunks - ½ cup,  chocolate sauce for topping”, “The Sweetheart is ready to snuggle. Go to your favorite place and enjoy with your loved one.
-# ”,  “CALORIES : 300”]]
+# ”,  “CALORIES : 300”]],
 
 #  => [ [ “HIGH TIMES”, “ 1 cup nut or seed or oat milk,Handful of kale or spinach, 1 T Coconut Butter, 1/2 teaspoon of preffered brand CBD oil, couple sprigs of mint, preferred sweetener (optional)”, “CBD is popping up everywhere and with good reason. This powerful ingredient derived from the hemp plant contains an abundance of anti-inflammatory properties but with none the psychotropic effects, so don’t expect to get high. Just expect to feel good. Calm down, high times ahead.”,  “CALORIES : 300”],
 
@@ -82,12 +82,12 @@
 # }
 #  end
 
-def associate_recipe
-  hash = seed_recipes()
-  # hash.each do |k|
-  # binding.pry
-  # end
-end
+# def associate_recipe
+# hash = seed_recipes()
+# hash.each do |k|
+# binding.pry
+# end
+# end
 
 # associate_recipe()
 #  seed_recipe()

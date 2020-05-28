@@ -5,6 +5,9 @@ class Interface
     @prompt = TTY::Prompt.new
   end
 
+  # To do
+  # Need to add back prompt for when  you see Favorite smoothie
+  #
   def self.cl()
     system "clear"
   end
@@ -21,20 +24,29 @@ class Interface
     log_in_answer = prompt.select("Choose an option?", %w(Login Register))
     if log_in_answer == "Login"
       user = User.login
-      display_favorites(user)
-      loading()
-      main_menu()
+      # loading()
+      main_menu(user)
     elsif log_in_answer == "Register"
       User.register
-      loading()
-      main_menu()
+      # loading()
+      main_menu(user)
     end
   end
 
-  def main_menu
-    puts "Hello, welcome to Smoodie!"
+  def main_menu(user)
+    # puts "Hello, welcome to Smoodie!"
     #{user.username}
-    display()
+    log_in_greeting = prompt.select("What would you like to do today?", ["My Favorite Recipes", "Get Smoothie Recommendation", "Add Smoothie to Favorites", "Logout"])
+    if log_in_greeting == "My Favorite Recipes"
+      User.display_favorites(user)
+    elsif log_in_greeting == "Recommend a Smoothie"
+      display()
+    elsif log_in_greeting == "Add Smoothie to Favorites"
+      Favorite.add_to_favorite(user)
+    elsif log_in_greeting == "Logout"
+      puts "Good Bye!"
+      puts "Enjoy your smoothie!!"
+    end
   end
 
   def display
@@ -43,7 +55,7 @@ class Interface
     user_mood = Mood.find_by(mood: user_mood)
     # cl()
     recipes = user_mood.recipes
-    loading()
+    # loading()
     list_smoothies(recipes)
   end
 
