@@ -44,18 +44,19 @@ recipe_hash = {
 
 recipe_hash.each do |k, v|
   i = 0
+  if i == 0
+    mood = Mood.create(mood: k.to_s)
+  end
   v.each do |recipe|
-    binding.pry
+    # binding.pry
     if k == :happy && i == 0
-      binding.pry
-      mood = Mood.create(mood: k.to_s)
+      # binding.pry
       recipe = Recipe.create(name_of_recipe: v[0][0], ingredients: v[0][1], description: v[0][2], calories: v[0][3])
       MoodRecipe.create(mood_id: mood.id, recipe_id: recipe.id)
       i += 1
     end
     if k == :happy && i == 1
-      binding.pry
-      mood = Mood.create(mood: k.to_s)
+      # binding.pry
       recipe = Recipe.create(name_of_recipe: v[1][0], ingredients: v[1][1], description: v[1][2], calories: v[1][3])
       MoodRecipe.create(mood_id: mood.id, recipe_id: recipe.id)
       i += 1
