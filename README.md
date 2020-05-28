@@ -1,11 +1,10 @@
-Module One Final Project
+Smoodies
 ========================
 
-Congratulations, you're at the end of module one! You've worked crazy hard to get here and have learned a ton.
+Franchell Polanco & Cristian Cedacero
+Welcome to our Command Line Application that allows suggests smoothie recipes based on a user's chosen mood and save recipes to their favorites list.
 
-For your final project, you'll be building a Command Line Application.
-
----
+<!-- ---
 
 ## Goals (Minimum Requirements)
 
@@ -373,12 +372,15 @@ Can you think of any other scenarios? How would you gracefully handle such scena
 
 ---
 
-### Phase 6: Presentation
 
-It's time to show off your creation to the world! Things you might want to do are:
+It's time to show off your creation to the world! Things you might want to do are: -->
+Installation
+
+ 1.Clone this repository
+ 2.
 
 * Write a README detailing:
-  * How to install your application.
+  * You can install our application by
   * How to run your application.
   * How to use your application (commands that can be run).
   * What your program looks like (screenshots).
