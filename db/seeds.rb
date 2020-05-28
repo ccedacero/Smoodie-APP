@@ -42,6 +42,7 @@ recipe_hash = {
   ],
 }
 
+Mood.destroy_all
 recipe_hash.each do |k, v|
   i = 0
   if i == 0

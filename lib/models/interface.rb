@@ -5,10 +5,6 @@ class Interface
     @prompt = TTY::Prompt.new
   end
 
-  # To do
-  # Need to add back prompt for when  you see Favorite smoothie
-  #
-
   def cl
     system "clear"
   end
@@ -27,14 +23,16 @@ class Interface
   end
 
   def chooose_login_or_register
-    log_in_answer = prompt.select("Choose an option?", %w(Login Register))
+    log_in_answer = prompt.select("Choose an option", %w(Login Register))
     if log_in_answer == "Login"
       user = User.login
-      # loading()
+      loading()
+      puts "Welcome back to Smoodie, #{user.name}"
+
       main_menu(user)
     elsif log_in_answer == "Register"
       User.register
-      # loading()
+      loading()
       main_menu(user)
     end
   end
@@ -64,10 +62,11 @@ class Interface
   def display
     mood_list = Mood.all.map { |mood| mood.mood }
     user_mood = prompt.select("Please choose how you're feeling today, and we'll recommend a smoothie?", (mood_list))
+    binding.pry
     user_mood = Mood.find_by(mood: user_mood)
-    # cl()
+    cl()
     recipes = user_mood.recipes
-    # loading()
+    loading()
     list_smoothies(recipes)
   end
 
@@ -95,13 +94,13 @@ class Interface
     user_favs = User.all.find_by(username: user.username).recipes
     puts "Here are your previously favorited smoothies!"
     if user_favs.count > 2
-      favorite_smoothie = prompt.select("Choose an option to see their recipe", [user_favs[0].name_of_recipe, user_favs[-2].name_of_recipe, user_favs[-1].name_of_recipe])
+      favorite_smoothie = prompt.select("Choose an option to see the recipe", [user_favs[0].name_of_recipe, user_favs[-2].name_of_recipe, user_favs[-1].name_of_recipe])
       if favorite_smoothie == user_favs[0].name_of_recipe
         display_smoothie_info(user_favs[0])
-      elsif favorite_smoothie == user_favs[1].name_of_recipe
+      elsif favorite_smoothie == user_favs[-2].name_of_recipe
         display_smoothie_info(user_favs[1])
-      elsif favorite_smoothie == user_favs[2].name_of_recipe
-        display_smoothie_info(user_favs[2])
+      elsif favorite_smoothie == user_favs[-1].name_of_recipe
+        display_smoothie_info(user_favs[-1])
       end
     elsif user_favs.count == 1
       favorite_smoothie = prompt.select("Choose an option to see their recipe", [user_favs[0].name_of_recipe])
@@ -158,12 +157,12 @@ class Interface
     sleep 1
     puts "loading.........................................................." + "\n"
     sleep 2
-    puts "loading............................................." + "\n"
-    sleep 3
+    puts "loading...................................." + "\n"
+    sleep 2
     puts "loading........." + "\n"
     puts "SMOODIE! :)"
     # puts "loading.................."
-    sleep 2
+    sleep 1
     cl()
   end
 end
