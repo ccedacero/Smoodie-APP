@@ -81,19 +81,7 @@ class User < ActiveRecord::Base
     puts "-----------------------------"
   end
 
-  def self.display_favorites(user)
-    prompt = TTY::Prompt.new
-    user_favs = self.all.find_by(username: user.username).recipes
-    puts "Here are your previously favorited smoothies!"
-    favorite_smoothie = prompt.select("Choose an option to see recipe?", [user_favs[0].name_of_recipe, user_favs[1].name_of_recipe, user_favs[2].name_of_recipe])
-    if favorite_smoothie == user_favs[0].name_of_recipe
-      display_smoothie_info(user_favs[0])
-    elsif favorite_smoothie == user_favs[1].name_of_recipe
-      display_smoothie_info(user_favs[1])
-    elsif favorite_smoothie == user_favs[2].name_of_recipe
-      display_smoothie_info(user_favs[2])
-    end
-  end
+  # refactor below to use map to get simple name if p
 end
 
 # user 16 tbrakus

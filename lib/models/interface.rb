@@ -8,7 +8,8 @@ class Interface
   # To do
   # Need to add back prompt for when  you see Favorite smoothie
   #
-  def self.cl()
+
+  def cl
     system "clear"
   end
 
@@ -36,9 +37,10 @@ class Interface
   def main_menu(user)
     # puts "Hello, welcome to Smoodie!"
     #{user.username}
-    log_in_greeting = prompt.select("What would you like to do today?", ["My Favorite Recipes", "Get Smoothie Recommendation", "Add Smoothie to Favorites", "Logout"])
-    if log_in_greeting == "My Favorite Recipes"
-      User.display_favorites(user)
+    log_in_greeting = prompt.select("What would you like to do today?", ["See My Favorite Recipes", "Get Smoothie Recommendation", "Add Smoothie to Favorites", "Logout"])
+    loading()
+    if log_in_greeting == "See My Favorite Recipes"
+      display_favorites(user)
     elsif log_in_greeting == "Recommend a Smoothie"
       display()
     elsif log_in_greeting == "Add Smoothie to Favorites"
@@ -65,14 +67,31 @@ class Interface
     user_choice = prompt.select("Please choose one to see the secret recipe:", (user_smoothie_choices))
     smoothie_recipe = recipes.find_by(name_of_recipe: user_choice)
     display_smoothie_info(smoothie_recipe)
-    additiona_choice = prompt.select("What would you like to do next?", %W(GO_BACK EXIT))
-    if additiona_choice == "GO_BACK"
+    navigation_menu()
+  end
+
+  def navigation_menu(user)
+    additiona_choice = prompt.select("What would you like to do next?", ["GO BACK", "EXIT"])
+    if additiona_choice == "GO BACK"
       cl()
-      sleep 2
-      list_smoothies(recipes)
+      main_menu(user)
     elsif additiona_choice == "EXIT"
       puts "GOOD BYE!.............." + "\n" + "ENJOY YOUR SMOOTHIE!"
     end
+  end
+
+  def display_favorites(user)
+    user_favs = User.all.find_by(username: user.username).recipes
+    puts "Here are your previously favorited smoothies!"
+    favorite_smoothie = prompt.select("Choose an option to see their recipe", [user_favs[0].name_of_recipe, user_favs[1].name_of_recipe, user_favs[2].name_of_recipe])
+    if favorite_smoothie == user_favs[0].name_of_recipe
+      display_smoothie_info(user_favs[0])
+    elsif favorite_smoothie == user_favs[1].name_of_recipe
+      display_smoothie_info(user_favs[1])
+    elsif favorite_smoothie == user_favs[2].name_of_recipe
+      display_smoothie_info(user_favs[2])
+    end
+    navigation_menu(user)
   end
 
   def display_smoothie_info(recipe)
@@ -91,6 +110,7 @@ class Interface
   end
 
   def loading
+    cl()
     sleep 1
     puts "loading.........................................................." + "\n"
     sleep 2
@@ -100,7 +120,7 @@ class Interface
     puts "SMOODIE! :)"
     # puts "loading.................."
     sleep 2
-    # cl()
+    cl()
   end
 end
 
