@@ -52,7 +52,7 @@ class User < ActiveRecord::Base
     elsif !found_user
       puts " :(Sorry! that name does not exist in our database"
       sleep 3
-      Interface.cl
+      system "clear"
       sleep 1
       prompt_login = prompt.select("Would you like to try again or Register?", %w(Login Register))
       puts "loading......................................."
