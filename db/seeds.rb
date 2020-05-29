@@ -1,3 +1,4 @@
+Found no changes, using resolution from the lockfile
 Mood.destroy_all
 MoodRecipe.destroy_all
 Recipe.destroy_all
