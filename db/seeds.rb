@@ -98,6 +98,7 @@ recipe_hash = {
    ["The Energizer", "mango, banana, blueberries, chia seeds, honey, greek yogurt", "The honey in this smoothie acts as a time-released muscle fuel, an energy booster perfect for the start of a busy day", "calories based on serving amount" ]
    ],
 
+
   :joyful => [
    ["Oh Happy Day", "bananas, chopped pineapple, cut mango, coconut water,dash of ground allspice, honey", "And live rejoicing every, everyday", "calories based on serving amount" ],
    ["Positive Vibration", "orange juice, raspberries, pineapples, spinach, yogurt, sweetener of choice", "Good Vibes Only", "calories based on serving amount" ]
@@ -122,17 +123,31 @@ recipe_hash = {
   # def seed_recipes
  recipe_hash.each do |k, v|
     binding.pry
+   
+Mood.destroy_all
+recipe_hash.each do |k, v|
+
   i = 0
   if i == 0
     mood = Mood.create(mood: k.to_s)
   end
   v.each do |recipe|
+
     if k == :happy && i == 0
+
+    # binding.pry
+    if k == :happy && i == 0
+      # binding.pry
+
       recipe = Recipe.create(name_of_recipe: v[0][0], ingredients: v[0][1], description: v[0][2], calories: v[0][3])
       MoodRecipe.create(mood_id: mood.id, recipe_id: recipe.id)
       i += 1
     end
     if k == :happy && i == 1
+
+
+      # binding.pry
+
       recipe = Recipe.create(name_of_recipe: v[1][0], ingredients: v[1][1], description: v[1][2], calories: v[1][3])
       MoodRecipe.create(mood_id: mood.id, recipe_id: recipe.id)
       i += 1
@@ -305,7 +320,6 @@ def seed_recipes
    end
  end
  end
-
  def seed_recipes
   recipe_hash.each do |k, v|
      binding.pry
@@ -328,7 +342,6 @@ def seed_recipes
    end
  end
  end
-
  puts done seeding
 #
 #  recipe_hash.each do |k, v|
