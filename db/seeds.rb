@@ -121,8 +121,8 @@ recipe_hash = {
   }
  
   # def seed_recipes
- recipe_hash.each do |k, v|
-    binding.pry
+#  recipe_hash.each do |k, v|
+#     binding.pry
    
 Mood.destroy_all
 recipe_hash.each do |k, v|
@@ -160,6 +160,8 @@ end
 end
   seed_recipes()
 
+
+
   def seed_recipes
     recipe_hash.each do |k, v|
        binding.pry
@@ -182,6 +184,9 @@ end
      end
    end
    end
+
+
+
 
    def seed_recipes
     recipe_hash.each do |k, v|
@@ -206,6 +211,8 @@ end
    end
    end
 
+
+
    def seed_recipes
     recipe_hash.each do |k, v|
        binding.pry
@@ -228,6 +235,8 @@ end
      end
    end
    end
+
+
 #
 def seed_recipes
   recipe_hash.each do |k, v|
@@ -252,6 +261,8 @@ def seed_recipes
  end
  end
 
+
+
  def seed_recipes
   recipe_hash.each do |k, v|
      binding.pry
@@ -274,6 +285,9 @@ def seed_recipes
    end
  end
  end
+
+
+
 
  def seed_recipes
   recipe_hash.each do |k, v|
@@ -298,6 +312,9 @@ def seed_recipes
  end
  end
 
+
+
+
  def seed_recipes
   recipe_hash.each do |k, v|
      binding.pry
@@ -320,6 +337,9 @@ def seed_recipes
    end
  end
  end
+
+
+
  def seed_recipes
   recipe_hash.each do |k, v|
      binding.pry
@@ -337,7 +357,7 @@ def seed_recipes
        recipe = Recipe.create(name_of_recipe: v[1][0], ingredients: v[1][1], description: v[1][2], calories: v[1][3])
        MoodRecipe.create(mood_id: mood.id, recipe_id: recipe.id)
        i += 1
-       #binding.pry
+       binding.pry
      end
    end
  end
