@@ -65,13 +65,10 @@ recipe_hash = {
   ],
 
   :bitter => [
-
-   ["Strawberry Shortcake", "strawberries, crumbled pound cake, milk, chocolate chips", "Sweeten Up!","calories based on serving amount" ],
-   ["GLAD", "orange juice, raspberries, plain yogurt, sugar to taste", "Don't get mad, get Glad", "calories based on serving amount"]
-   ] 
-  }
- 
-Mood.destroy_all
+    ["Strawberry Shortcake", "strawberries, crumbled pound cake, milk, chocolate chips", "Sweeten Up!", "calories based on serving amount"],
+    ["GLAD", "orange juice, raspberries, plain yogurt, sugar to taste", "Don't get mad, get Glad", "calories based on serving amount"],
+  ],
+}
 
 recipe_hash.each do |k, v|
   i = 0
