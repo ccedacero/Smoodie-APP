@@ -1,4 +1,5 @@
 Found no changes, using resolution from the lockfile
+# Found no changes, using resolution from the lockfile
 Mood.destroy_all
 MoodRecipe.destroy_all
 Recipe.destroy_all
@@ -75,23 +76,24 @@ recipe_hash.each do |k, v|
   if i == 0
     mood = Mood.create(mood: k.to_s)
   end
-  # v.each do |recipe|
-  if k == :happy || k == :calm_chill || k == :romantic || k == :peaceful || k == :restless || k == :sluggish || k == :joyful || k == :powerful || k == :apologetic || k == :bitter && i == 0
-    recipe = Recipe.create(name_of_recipe: v[0][0], ingredients: v[0][1], description: v[0][2], calories: v[0][3])
-    MoodRecipe.create(mood_id: mood.id, recipe_id: recipe.id)
-    i += 1
-    # end
-    # end
-  end
-  # binding.pry
-  if k == :happy || k == :calm_chill || k == :romantic || k == :peaceful || k == :restless || k == :sluggish || k == :joyful || k == :powerful || k == :apologetic || k == :bitter && i == 1
-    # created = Recipe.all.find_by(name_of_recipe: v[1][0]).name_of_recipe
-    # if created == nil
-    recipe = Recipe.create(name_of_recipe: v[1][0], ingredients: v[1][1], description: v[1][2], calories: v[1][3])
-    MoodRecipe.create(mood_id: mood.id, recipe_id: recipe.id)
-    i += 1
-    # end
-    # end
+  v.each do |recipe|
+    if k == :happy || k == :calm_chill || k == :romantic || k == :peaceful || k == :restless || k == :sluggish || k == :joyful || k == :powerful || k == :apologetic || k == :bitter && i == 0
+      recipe = Recipe.create(name_of_recipe: v[0][0], ingredients: v[0][1], description: v[0][2], calories: v[0][3])
+      MoodRecipe.create(mood_id: mood.id, recipe_id: recipe.id)
+      i += 1
+      # end
+      # end
+    end
+    # binding.pry
+    if k == :happy || k == :calm_chill || k == :romantic || k == :peaceful || k == :restless || k == :sluggish || k == :joyful || k == :powerful || k == :apologetic || k == :bitter && i == 1
+      # created = Recipe.all.find_by(name_of_recipe: v[1][0]).name_of_recipe
+      # if created == nil
+      recipe = Recipe.create(name_of_recipe: v[1][0], ingredients: v[1][1], description: v[1][2], calories: v[1][3])
+      MoodRecipe.create(mood_id: mood.id, recipe_id: recipe.id)
+      i += 1
+      # end
+      # end
+    end
   end
 end
 
