@@ -47,7 +47,7 @@ class User < ActiveRecord::Base
     password = prompt.mask("Please enter your password", echo: false)
     found_user = User.all.find_by(username: username)
     if found_user
-      # puts "Welcome back to Smoodie, #{found_user.name}"
+      puts "Welcome back to Smoodie, #{found_user.name}"
       user = found_user
     elsif !found_user
       puts " :(Sorry! that name does not exist in our database"
