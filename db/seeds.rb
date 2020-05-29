@@ -6,15 +6,6 @@ User.destroy_all
 
 require "faker"
 
-# def seed_names
-# 3.times do
-# name = Faker::Name.unique.first_name
-# last = Faker::Name.unique.last_name
-# full_name = name + " " + last
-# username = name[0] + last
-# username.downcase!
-# User.create(username: username, name: full_name)
-#
 def seed_names
   10.times do
     name = Faker::Name.unique.first_name
