@@ -5,7 +5,7 @@ interface.welcome
 user_instance = interface.chooose_login_or_register
 
 interface.user = user_instance
-binding.pry
+# binding.pry
 
 # interface.main_menu
 # interface.display
