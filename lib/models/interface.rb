@@ -19,7 +19,7 @@ class Interface
   end
 
   def exit
-    puts exit_art
+    exit_art
   end
 
   def chooose_login_or_register
@@ -52,18 +52,18 @@ class Interface
       navigation_menu(user)
     elsif log_in_greeting == "Delete Smoothie From Favorites"
       destroy_smoothie(user)
-      navigation_menu(user)
     elsif log_in_greeting == "Logout"
-      puts "Good Bye!"
+      # puts "Good Bye!"
       puts "Enjoy your smoothie!!"
+      puts exit
     end
   end
 
   def display
     mood_list = Mood.all.map { |mood| mood.mood }
-    user_mood = prompt.select("Please choose how you're feeling today, and we'll recommend a smoothie?", (mood_list))
+    user_mood = prompt.select("Please choose how you're feeling today, and we'll recommend a smoothie", (mood_list))
     binding.pry
-    user_mood = Mood.find_by(mood: user_mood)
+    related_moods = Mood.find_by(mood: user_mood).recipes
     cl()
     recipes = user_mood.recipes
     loading()
@@ -114,28 +114,32 @@ class Interface
   def destroy_smoothie(user)
     user_favs = User.all.find_by(username: user.username).recipes
     if user_favs.count > 2
-      delete_smoothie = prompt.select("Which of your favorite smoothies would you like to remove from your favorites?", [user_favs[0].name_of_recipe, user_favs[-2].name_of_recipe, user_favs[-1].name_of_recipe])
+      delete_smoothie = prompt.select("Which of your favorite smoothies would you like to remove from your favorites?", [user_favs[0].name_of_recipe, user_favs[1].name_of_recipe, user_favs[2].name_of_recipe])
       if delete_smoothie == user_favs[0].name_of_recipe
-        binding.pry
-        smoothie_id = user.recipes.find_by(name_of_recipe: delete_smoothie).id
-        fave_id = Favorite.find_by(recipe_id: smoothie_id).id
-        Favorite.destroy(fave_id)
-        puts "Smoothie #{delete_smoothie} has been removed from your favorites"
-        sleep 2
+        destroy_helper(user, delete_smoothie)
       elsif delete_smoothie == user_favs[1].name_of_recipe
-        display_smoothie_info(user_favs[1])
+        destroy_helper(user, delete_smoothie)
       elsif delete_smoothie == user_favs[2].name_of_recipe
-        display_smoothie_info(user_favs[2])
+        destroy_helper(user, delete_smoothie)
       end
     elsif user_favs.count == 1
       delete_smoothie = prompt.select("Which of your favorite smoothies would you like to remove from your favorites?", [user_favs[0].name_of_recipe])
       if delete_smoothie == user_favs[0].name_of_recipe
-        display_smoothie_info(user_favs[0])
+        # display_smoothie_info(user_favs[0])
+        destroy_helper(user, delete_smoothie)
       end
     end
   end
 
-  # def destroy_helper
+  def destroy_helper(user, delete_smoothie)
+    smoothie_id = user.recipes.find_by(name_of_recipe: delete_smoothie).id
+    # binding.pry
+    fave_id = Favorite.find_by(recipe_id: smoothie_id).id
+    Favorite.destroy(fave_id)
+    Recipe.destroy(smoothie_id)
+    puts "Smoothie, #{delete_smoothie} has been removed from your favorites"
+    sleep 2
+  end
 
   def display_smoothie_info(recipe)
     puts "Smoothie Name" + "\n"
