@@ -11,6 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2020_05_27_010804) do
+
   create_table "favorites", force: :cascade do |t|
     t.integer "recipe_id"
     t.integer "user_id"
@@ -36,4 +37,5 @@ ActiveRecord::Schema.define(version: 2020_05_27_010804) do
     t.string "username"
     t.string "name"
   end
+
 end
