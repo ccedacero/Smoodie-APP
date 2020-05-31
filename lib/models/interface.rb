@@ -31,6 +31,7 @@ class Interface
       loading
       puts "Welcome back to Smoodie, #{user.name}"
       main_menu(user)
+      # binding.pry
     elsif log_in_answer == 'Register'
       user = User.register
       loading
@@ -48,7 +49,6 @@ class Interface
       display_favorites(user)
     elsif log_in_greeting == 'Get Smoothie Recommendation'
       display(user)
-      navigation_menu(user)
     elsif log_in_greeting == 'Add Smoothie to Favorites'
       Favorite.add_to_favorite(user)
       navigation_menu(user)
@@ -64,21 +64,21 @@ class Interface
   def display(user)
     mood_list = Mood.all.map(&:mood)
     user_mood = prompt.select("Please choose how you're feeling today, and we'll recommend a smoothie", mood_list)
-    binding.pry
+    # binding.pry
     related_moods = Mood.find_by(mood: user_mood).recipes
     cl
     # recipes = related_moods.map(&:name_of_recipe)
     loading
     list_smoothies(user, related_moods)
+    navigation_menu(user)
   end
 
-  def list_smoothies(user, recipes)
+  def list_smoothies(_user, recipes)
     user_smoothie_choices = recipes.map(&:name_of_recipe)
     puts 'Based on your mood, you may like one of our smoothies below.'
     user_choice = prompt.select('Please choose one to see the secret recipe:', user_smoothie_choices)
     smoothie_recipe = recipes.find_by(name_of_recipe: user_choice)
     display_smoothie_info(smoothie_recipe)
-    navigation_menu(user)
   end
 
   def navigation_menu(user)
@@ -96,17 +96,20 @@ class Interface
     user_favs = User.all.find_by(username: user.username).recipes
     puts 'Here are your previously favorited smoothies!'
     if user_favs.count > 2
-      favorite_smoothie = prompt.select('Choose an option to see the recipe', [user_favs[0].name_of_recipe, user_favs[-2].name_of_recipe, user_favs[-1].name_of_recipe])
+      favorite_smoothie = prompt.select('Choose an option to see the recipe', [user_favs[0].name_of_recipe, user_favs[1].name_of_recipe, user_favs[-1].name_of_recipe])
       if favorite_smoothie == user_favs[0].name_of_recipe
         display_smoothie_info(user_favs[0])
-      elsif favorite_smoothie == user_favs[-2].name_of_recipe
+      elsif favorite_smoothie == user_favs[1].name_of_recipe
         display_smoothie_info(user_favs[1])
       elsif favorite_smoothie == user_favs[-1].name_of_recipe
         display_smoothie_info(user_favs[-1])
       end
     elsif user_favs.count == 1
       favorite_smoothie = prompt.select('Choose an option to see their recipe', [user_favs[0].name_of_recipe])
-      display_smoothie_info(user_favs[0]) if favorite_smoothie == user_favs[0].name_of_recipe
+      display_smoothie_info(user_favs[0])
+      # if favorite_smoothie == user_favs[0].name_of_recipe
+    elsif user_favs.count == 0
+      puts "You have no smoothies on your favorite's list. Go add some now."
     end
     navigation_menu(user)
   end
@@ -128,8 +131,10 @@ class Interface
         # display_smoothie_info(user_favs[0])
         destroy_helper(user, delete_smoothie)
       end
-    end
+    elsif user_favs.count == 0
+      puts "You have no smoothies on your favorite's list. No smoothies to destroy!"
   end
+end
 
   def destroy_helper(user, delete_smoothie)
     smoothie_id = user.recipes.find_by(name_of_recipe: delete_smoothie).id
