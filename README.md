@@ -25,7 +25,7 @@ Our Smoodie app is made up of the following:
   e. Users are able to delete their smoothies  
 4. We use separate models for our runner and CLI interface.  
 
-A video walkthrough of the app can be seen below: 
+A video walkthrough of the app can be seen here:  
 https://www.youtube.com/watch?v=_R2iBBBZD7A
 
 ## Installation
