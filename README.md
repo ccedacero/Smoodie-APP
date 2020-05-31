@@ -1,8 +1,7 @@
 Smoodies
 ========================
 
-Franchell Polanco & Cristian Cedacero
-Welcome to our Command Line Application that allows suggests smoothie recipes based on a user's chosen mood and save recipes to their favorites list.
+Cristian Cedacero & Franchell Polanco Welcome you to our Command Line Application, Smoodie, that suggests smoothie recipes based on a user's chosen mood.
 
 ## Basics
 
@@ -19,17 +18,17 @@ Our Smoodie app is made up of the following:
 1. Contain five models with corresponding tables, including two joiner tables.
 2. We use Sqlite3 alongisde ActiveRecord  and faker to persist the data and manage seeding.
 3. Users are able to interact through the CLI:
-  a. Users are able to register for accounts 
-  b. Users are able to login to existing accounts 
-  c. Users are able to get smoothie recipe recommendations based on their mood 
-  d. Users are able to favorite their smoothie recommendations. 
-  e. Users are able to delete their smoothies
-4. We use separate models for our runner and CLI interface.
+  a. Users are able to register for accounts   
+  b. Users are able to login to existing accounts   
+  c. Users are able to get smoothie recipe   recommendations based on their mood  
+  d. Users are able to favorite their smoothie recommendations.  
+  e. Users are able to delete their smoothies  
+4. We use separate models for our runner and CLI interface.  
 
-A video walkthrough of the app can be seen here: 
+A video walkthrough of the app can be seen below: 
 https://www.youtube.com/watch?v=_R2iBBBZD7A
 
-## Basics
-clone this repository
-run bundle install to install the necessary gems
-run ruby bin/run.db to start!
+## Installation
+clone this repository  
+run bundle install to install the necessary gems  
+run ruby bin/run.db to start!  
