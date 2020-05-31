@@ -6,22 +6,29 @@ Welcome to our Command Line Application that allows suggests smoothie recipes ba
 
 <!-- ---
 
-## Goals (Minimum Requirements)
+## Goals
 
-You will be building a **Command Line CRUD App** that uses a database to persist information. The goal of which is to demonstrate all of the skills that you've learned in module one:
+Smoodie is a Command Line CRUD App that uses a database to persist information. Some of the concepts practiced on this project include:
 
 - Ruby
 - Object Orientation
 - Relationships (via ActiveRecord)
 - Problem Solving (via creating a Command Line Interface (CLI))
 
-Your **minimum requirements** for this project are to build a Command Line App that:
+Our Smoodie app is made upf of the following:
 
-1. Contains at least three models with corresponding tables, including a join table.
-2. Accesses a Sqlite3 database using ActiveRecord.
-3. Has a CLI that allows users to interact with your database as defined by your _user stories_ (minimum of four; one for each CRUD action).
-4. Uses good OO design patterns. You should have separate models for your runner and CLI interface.
+1. Contain five models with corresponding tables, including two joiner tables.
+2. We use Sqlite3 alongisde ActiveRecord to persist the data and manage seeding.
+3. Users are able to interact through the CLI:
+  a. Users are able to register for accounts 
+  b. Users are able to login to existing accounts 
+  c. Users are able to get smoothie recipe recommendations based on their mood 
+  d. Users are able to favorite their smoothie recommendations. 
+  e. Users are able to delete their smoothies.
+4. We use separate models for our runner and CLI interface.
 
+A video walkthrough of the app can be seen here: 
+https://www.youtube.com/watch?v=_R2iBBBZD7A
 ---
 
 ## Project Overview (Timeline)
